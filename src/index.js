@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateImage();
     addLike();
     addComment();
+    addDeleteButtonToNakedEl();
 });
 
 // helpers
@@ -58,8 +59,9 @@ function addComment() {
     const commentForm = document.querySelector('form.comment-form');
     commentForm.addEventListener('submit', (event) => {
         const li = document.createElement('li');
-        // console.log(event.target.firstElementChild.value)
         li.innerText = event.target.firstElementChild.value;
+        let delbutton = createDeleteButton();
+        li.append(delbutton)
         commentsList.append(li);
         event.target.firstElementChild.value = '';
         event.preventDefault();
@@ -79,13 +81,30 @@ function addComment() {
     });
 };
 
-function addCommentObjToCoderDog () {
+function addCommentObjToCoderDog() {
+    let lastId = coderDog.comments[coderDog.comments.length - 1].id
     coderDog.comments.push({
-        id: coderDog.comments.length + 1,
+        id: lastId + 1,
         content: commentsList.lastElementChild.innerText
     });
 };
-/* 
+
+function createDeleteButton() {
+    let deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.classList.add('delete-button');
+    return deleteButton;
+};
+
+// function addDeleteButtonToNakedEl () {
+//     for (const li of commentsList.children) {
+//         if (li.children.length > 0) {
+//             let delbutton = createDeleteButton();
+//             li.append(delbutton);
+//         }
+//     };
+// };
+/*
 Advanced Deliverables
 
 As a user, I can:
