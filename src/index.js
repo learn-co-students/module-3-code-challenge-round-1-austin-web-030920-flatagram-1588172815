@@ -48,7 +48,9 @@ function addLikes(e){
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(dogInfo.likes),
+        body: JSON.stringify({
+            likes: dogInfo.likes
+        }),
     })
 }
 
