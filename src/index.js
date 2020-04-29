@@ -1,9 +1,11 @@
-const imageUrl = "http://localhost:3000/image"
+const imageUrl = "http://localhost:3000/image";
 let coderDog;
+const commentsList = document.querySelector('ul.comments');
 
 document.addEventListener('DOMContentLoaded', () => {
     updateImage();
     addLike();
+    addComment();
 });
 
 function updateImage() {
@@ -22,7 +24,7 @@ function displayDog() {
     document.querySelector('img.image').src = coderDog.image;
     document.querySelector('span.likes').innerText = `${coderDog.likes} likes`;
 
-    const commentsList = document.querySelector('ul.comments')
+    // see top for commentList assignment
     commentsList.innerHTML = ''
 
     coderDog.comments.forEach(comment => {
@@ -48,6 +50,18 @@ function addLike() {
                 likes: coderDog.likes
             })
         });
+    });
+};
+
+function addComment() {
+    const commentForm = document.querySelector('form.comment-form');
+    commentForm.addEventListener('submit', (event) => {
+        const li = document.createElement('li');
+        // console.log(event.target.firstElementChild.value)
+        li.innerText = event.target.firstElementChild.value;
+        commentsList.append(li);
+        event.target.firstElementChild.value = '';
+        event.preventDefault();
     });
 };
 
