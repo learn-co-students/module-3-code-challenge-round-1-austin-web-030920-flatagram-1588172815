@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addComment();
 });
 
+// helpers
 function updateImage() {
     fetch(imageUrl)
         .then(resp => resp.json())
@@ -62,17 +63,29 @@ function addComment() {
         commentsList.append(li);
         event.target.firstElementChild.value = '';
         event.preventDefault();
+
+        addCommentObjToCoderDog();
+        fetch(imageUrl, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                comments: coderDog.comments
+            })
+        });
+
     });
 };
 
-
-/* Core Deliverables
-As a user, I can:
-
-See the image received from the server, including its likes and comments when the page loads
-Click on the heart icon to increase image likes, and still see them when I reload the page
-Add a comment (no persistence needed)
-
+function addCommentObjToCoderDog () {
+    coderDog.comments.push({
+        id: coderDog.comments.length + 1,
+        content: commentsList.lastElementChild.innerText
+    });
+};
+/* 
 Advanced Deliverables
 
 As a user, I can:
