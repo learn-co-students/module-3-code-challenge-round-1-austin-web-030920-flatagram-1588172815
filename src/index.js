@@ -74,8 +74,22 @@ function renderComments() {
     let allComments = document.querySelector('.comments');
     allComments.innerText = ''
     comments.forEach(comment => {
+        let idCounter = 1
         let newComment = document.createElement('li');
+        let deleteBtn = document.createElement('span');
         newComment.innerText = comment;
+        newComment.dataset.id = idCounter
+        idCounter++
         allComments.appendChild(newComment);
+
+        deleteBtn.innerText = "    [Delete Comment]"
+        newComment.appendChild(deleteBtn);
+
+        deleteBtn.dataset.id = newComment.dataset.id
+        deleteBtn.addEventListener('click', () => {
+            console.log('test');
+            commentToDel = comments.find(comment => deleteBtn.dataset.id === comment.dataset.id)
+            console.log(commentToDel);
+        })
     });
 }
