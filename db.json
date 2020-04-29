@@ -1,9 +1,8 @@
 {
   "image": {
     "title": "Coder dog",
-    "likes": 0,
+    "likes": 4,
     "image": "./assets/coder-dog.png",
-    "comments": [
-    ]
+    "comments": []
   }
 }

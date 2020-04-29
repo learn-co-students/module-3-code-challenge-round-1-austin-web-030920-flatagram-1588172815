@@ -14,9 +14,12 @@ const getImage = async () => {
     // return await (await fetch(url)).json()
 }
 
+const deleteComment = (id) => {
+    // get comment by id in comments
+    // find index of that element
 
-const deleteComment = id => {
-    let test = image.comments.splice(id - 1, 1);
+    image.comments = image.comments.filter(comment => (comment.id != id) );
+
     renderImageCard(image);
 
     // persist that shiz
@@ -100,12 +103,12 @@ const setLikes = (likes) => {
 
 }
 // event handlers
-const handleLike = async (event) => {
+const handleLike = (event) => {
     // increment image likes
     setLikes(image.likes + 1)
 }
 
-const handleDislike = async (event) => {
+const handleDislike = (event) => {
     // decrement image likes
     if (parseInt(image.likes) > 0) {
         setLikes(image.likes - 1)
