@@ -11,11 +11,6 @@ function renderFGP(json) {
     let fgImage = document.querySelector(".image");
     let likeButton = document.querySelector(".like-button");
     let addComment = document.querySelector(".comment-form");
-    let fgLikes = document.querySelector(".likes")
-    let postComments = 
-
-    fgLikes.innerText = `${json.likes} likes`
-
 
     fgImage.setAttribute('src', json.image);
     
@@ -28,7 +23,7 @@ function renderFGP(json) {
 function likePost(event) {
     console.log(event.target);
     likes = document.querySelector(".likes");
-    let likeCount = parseInt(likes.innerText);
+    likeCount = parseInt(likes.innerText);
     likeCount++
     // console.log(likeCount);
     likes.innerText = `${likeCount} likes`;
@@ -41,7 +36,7 @@ function likePost(event) {
             "Accept": "application/json"
         },
         body: JSON.stringify({
-            likes: likeCount
+            likes: likes 
         })
     });
 }
@@ -50,27 +45,14 @@ function postComment(event) {
     event.preventDefault();
     comments.push(document.querySelector('.comment-input').value);
     console.log(comments);
-
     renderComments();
     // comment.innerText = ''
-    fetch(url, {
-        method: "PATCH",
-        headers: {
-            'Content-Type': "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({
-            comments: comments
-        })
-    })
 }
 
 function renderComments() {
-    let allComments = document.querySelector('.comments');
-    allComments.innerText = ''
     comments.forEach(comment => {
-        let newComment = document.createElement('li');
-        newComment.innerText = comment;
-        allComments.appendChild(newComment);
-    });
+        let newComment = document.createElement('li')
+        let allComments = document.querySelector(.comments)
+        newComment.innerText = comment
+    })
 }

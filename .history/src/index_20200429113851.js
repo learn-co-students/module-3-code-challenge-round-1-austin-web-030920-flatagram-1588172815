@@ -12,7 +12,7 @@ function renderFGP(json) {
     let likeButton = document.querySelector(".like-button");
     let addComment = document.querySelector(".comment-form");
     let fgLikes = document.querySelector(".likes")
-    let postComments = 
+    let fgComments = document.querySelector(".comments")
 
     fgLikes.innerText = `${json.likes} likes`
 
