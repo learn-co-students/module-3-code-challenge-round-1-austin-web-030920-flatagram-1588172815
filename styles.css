@@ -52,18 +52,50 @@ body {
   font-size: 0.9rem;
   font-weight: 600;
 }
+.delete-comment-button {
+  color: grey;
+  /* font-size: 1.5rem; */
+  border: none;
+  background: none;
+  transition: color 300ms;
+  cursor: pointer;
+  padding: 0;
+  font-style: normal;
+}
+/* .delete-comment-button::after {
+  content: 'X';
+  font-style: normal;
+} */
+.delete-comment-button:hover {
+  color: red;
+}
 
 .like-button {
-  color: rgb(255, 127, 80);
+  color: grey;
   font-size: 1.5rem;
   border: none;
   background: none;
   transition: color 300ms;
   cursor: pointer;
+  padding: 0;
+}
+
+.dislike-button {
+  color: grey;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  transition: color 300ms;
+  cursor: pointer;
+  padding: 0;
 }
 
 .like-button:hover {
   color: rgb(241, 71, 19);
+}
+
+.dislike-button:hover {
+  color: blue;
 }
 
 .like-button:active {
