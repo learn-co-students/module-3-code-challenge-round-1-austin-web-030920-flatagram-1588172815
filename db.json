@@ -4,14 +4,6 @@
     "likes": 0,
     "image": "./assets/coder-dog.png",
     "comments": [
-      {
-        "id": 3,
-        "content": "super duper test"
-      },
-      {
-        "id": 2,
-        "content": "I am super happy"
-      }
     ]
   }
 }
