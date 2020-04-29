@@ -4,19 +4,24 @@ let comments = [];
 document.addEventListener('DOMContentLoaded', () => {
     fetch(url)
     .then(resp => resp.json())
-    .then(json => renderFGP(json))
+    .then(json => {
+        comments = json.comments
+        renderFGP(json)
+    });
 });
 
 function renderFGP(json) {
     let fgImage = document.querySelector(".image");
     let likeButton = document.querySelector(".like-button");
     let addComment = document.querySelector(".comment-form");
-    let fgLikes = document.querySelector(".likes")
-    let postComments = 
+    let fgLikes = document.querySelector(".likes");
+    let fgTitle = document.querySelector(".title");
+
+    renderComments();
+    
 
     fgLikes.innerText = `${json.likes} likes`
-
-
+    fgTitle.innerText = json.title
     fgImage.setAttribute('src', json.image);
     
     likeButton.addEventListener('click', likePost);
