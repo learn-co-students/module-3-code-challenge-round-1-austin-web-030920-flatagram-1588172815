@@ -2,7 +2,8 @@ const imageUrl = "http://localhost:3000/image"
 let coderDog;
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateImage()
+    updateImage();
+    addLike();
 });
 
 function updateImage() {
@@ -10,17 +11,17 @@ function updateImage() {
         .then(resp => resp.json())
         .then(json => {
             coderDog = json;
-            displayDog();       
-        });    
+            displayDog();
+        });
 };
 
-function displayDog(){    
+function displayDog() {
     // console.table(coderDog);
 
     document.querySelector('h2.title').innerText = coderDog.title;
     document.querySelector('img.image').src = coderDog.image;
     document.querySelector('span.likes').innerText = `${coderDog.likes} likes`;
-    
+
     const commentsList = document.querySelector('ul.comments')
     commentsList.innerHTML = ''
 
@@ -31,13 +32,32 @@ function displayDog(){
     });
 };
 
+function addLike() {
+    const likeButton = document.querySelector("button.like-button");
+    likeButton.addEventListener('click', (event) => {
+        coderDog.likes++;
+        displayDog();
+
+        fetch(imageUrl, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                likes: coderDog.likes
+            })
+        });
+    });
+};
+
 
 /* Core Deliverables
 As a user, I can:
 
 See the image received from the server, including its likes and comments when the page loads
 Click on the heart icon to increase image likes, and still see them when I reload the page
-Add a comment (no persistence needed) 
+Add a comment (no persistence needed)
 
 Advanced Deliverables
 
